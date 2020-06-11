@@ -9,7 +9,7 @@ int main()
     int fd, len;
     char inbuf[20];
     char outbuf[20] = "scull dev test!";
-    fd = open("/dev/sculldev", O_WRONLY);
+    fd = open("/dev/scull", O_WRONLY);
     if (fd < 0)
     {
         printf("Error openning the device of sculldev for writing!/n");
@@ -33,7 +33,6 @@ int main()
     }
     len = read(fd, inbuf, len);
     if (len < 0)
-
     {
         printf("Error reading from the device!/n ");
         close(fd);
