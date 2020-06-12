@@ -244,7 +244,7 @@ int scull_open(struct inode *inode, struct file *filp)
 	dev = container_of(inode->i_cdev, struct scull_dev, cdev);
 	printk(KERN_DEBUG "dev indetify:%d BY ZICHEN LIU\n", dev->identify);
 	printk(KERN_DEBUG "i_cdev:%x scull_devices address:%x dev address:%x BY ZICHEN LIU\n", inode->i_cdev, scull_devices, dev);
-	printk(KERN_DEBUG "inode:%x filp->f_inode:%x\n", inode, filp->f_inode);
+	printk(KERN_DEBUG "inode:%x filp->f_inode:%x BY ZICHEN LIU\n", inode, filp->f_inode);
 	filp->private_data = dev; /* for other methods */
 
 	/* now trim to 0 the length of the device if open was write-only */
