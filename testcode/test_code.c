@@ -7,8 +7,8 @@
 int main()
 {
     int fd, len;
-    char inbuf[20];
-    char outbuf[20] = "scull dev test! BY ZICHEN LIU";
+    char inbuf[40];
+    char outbuf[40] = "scull dev test! BY ZICHEN LIU\n";
     fd = open("/dev/scull", O_WRONLY);
     if (fd < 0)
     {
@@ -38,5 +38,5 @@ int main()
         exit(1);
     }
     printf("reading %d bytes from the device!\n", len);
-    printf("%s/n", inbuf);
+    printf("%s\n", inbuf);
 }
