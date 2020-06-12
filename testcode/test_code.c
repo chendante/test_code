@@ -8,7 +8,7 @@ int main()
 {
     int fd, len;
     char inbuf[20];
-    char outbuf[20] = "scull dev test!";
+    char outbuf[20] = "scull dev test! BY ZICHEN LIU";
     fd = open("/dev/scull", O_WRONLY);
     if (fd < 0)
     {
@@ -17,7 +17,6 @@ int main()
     }
     len = write(fd, outbuf, strlen(outbuf) + 1);
     if (len < 0)
-
     {
         printf("Error writing to the device!/n");
         close(fd);
@@ -25,7 +24,7 @@ int main()
     }
     printf("writing %d bytes to the device!/n", len);
     close(fd);
-    fd = open("/dev/sculldev", O_RDONLY);
+    fd = open("/dev/scull", O_RDONLY);
     if (fd < 0)
     {
         printf("Error openning the device of sculldev for reading!/n");
