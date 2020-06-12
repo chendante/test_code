@@ -242,6 +242,9 @@ int scull_open(struct inode *inode, struct file *filp)
 	struct scull_dev *dev; /* device information */
 
 	dev = container_of(inode->i_cdev, struct scull_dev, cdev);
+	printk(KERN_DEBUG "dev indetify:%d BY ZICHEN LIU\n", dev->identify)
+	printk(KERN_DEBUG "i_cdev:%x scull_devices address:%x dev address:%x BY ZICHEN LIU", inode->i_cdev, scull_devices, dev)
+	printk(KERN_DEBUG "inode:%x filp->f_inode:%x", inode, filp->f_inode)
 	filp->private_data = dev; /* for other methods */
 
 	/* now trim to 0 the length of the device if open was write-only */
@@ -650,6 +653,7 @@ int scull_init_module(void)
 	for (i = 0; i < scull_nr_devs; i++) {
 		scull_devices[i].quantum = scull_quantum;
 		scull_devices[i].qset = scull_qset;
+		scull_devices[i].identify = 5280 + i;
 		mutex_init(&scull_devices[i].lock);
 		scull_setup_cdev(&scull_devices[i], i);
 	}
