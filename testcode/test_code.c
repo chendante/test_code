@@ -12,31 +12,31 @@ int main()
     fd = open("/dev/scull", O_WRONLY);
     if (fd < 0)
     {
-        printf("Error openning the device of sculldev for writing!/n");
+        printf("Error openning the device of scull for writing!\n");
         exit(1);
     }
     len = write(fd, outbuf, strlen(outbuf) + 1);
     if (len < 0)
     {
-        printf("Error writing to the device!/n");
+        printf("Error writing to the device!\n");
         close(fd);
         exit(1);
     }
-    printf("writing %d bytes to the device!/n", len);
+    printf("writing %d bytes to the device!\n", len);
     close(fd);
     fd = open("/dev/scull", O_RDONLY);
     if (fd < 0)
     {
-        printf("Error openning the device of sculldev for reading!/n");
+        printf("Error openning the device of scull for reading!\n");
         exit(1);
     }
     len = read(fd, inbuf, len);
     if (len < 0)
     {
-        printf("Error reading from the device!/n ");
+        printf("Error reading from the device!\n ");
         close(fd);
         exit(1);
     }
-    printf("reading %d bytes from the device!/n", len);
+    printf("reading %d bytes from the device!\n", len);
     printf("%s/n", inbuf);
 }
