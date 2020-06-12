@@ -8,7 +8,7 @@ int main()
 {
     int fd, len;
     char inbuf[40];
-    char outbuf[] = "scull dev test! BY ZICHEN LIU\n";
+    char outbuf[] = "scull dev test! BY ZICHEN LIU";
     fd = open("/dev/scull", O_WRONLY);
     if (fd < 0)
     {
