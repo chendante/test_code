@@ -41,5 +41,4 @@ int main()
         exit(1);
     }
     printf("ioctl retval: %d\n", retval);
-    printf("%s\n", inbuf);
 }
