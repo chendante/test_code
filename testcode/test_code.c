@@ -31,25 +31,25 @@ int main()
         printf("Error openning the device of scull for reading!\n");
         exit(1);
     }
-    int retval, quantum = 528;
+    int retval, g_quantum, s_quantum=5280;
 
-    retval = ioctl(fd, SCULL_IOCGQUANTUM, &quantum);
+    retval = ioctl(fd, SCULL_IOCGQUANTUM, &g_quantum);
     if (retval < 0)
     {
         printf("Error ioctl from the device!\n ");
         close(fd);
         exit(1);
     }
-    printf("ioctl retval: %d, quantum:%d\n", retval, quantum);
-    retval = ioctl(fd, SCULL_IOCSQUANTUM, &quantum);
+    printf("ioctl retval: %d, g_quantum:%d\n", retval, g_quantum);
+    retval = ioctl(fd, SCULL_IOCSQUANTUM, &s_quantum);
     if (retval < 0)
     {
         printf("Error ioctl from the device!\n ");
         close(fd);
         exit(1);
     }
-    printf("ioctl retval: %d, quantum:%d\n", retval, quantum);
-    retval = ioctl(fd, SCULL_IOCGQUANTUM, &quantum);
+    printf("ioctl retval: %d, s_quantum:%d\n", retval, s_quantum);
+    retval = ioctl(fd, SCULL_IOCGQUANTUM, &g_quantum);
     if (retval < 0)
     {
         printf("Error ioctl from the device!\n ");
@@ -57,5 +57,5 @@ int main()
         exit(1);
     }
     close(fd);
-    printf("ioctl retval: %d, quantum:%d\n", retval, quantum);
+    printf("ioctl retval: %d, g_quantum:%d\n", retval, g_quantum);
 }
