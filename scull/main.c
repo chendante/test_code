@@ -88,29 +88,29 @@ int scull_trim(struct scull_dev *dev)
 
 int scull_read_procmem(struct seq_file *s, void *v)
 {
-        int i, j;
-        int limit = s->size - 80; /* Don't print more than this */
+	int i, j;
+	int limit = s->size - 80; /* Don't print more than this */
 
-        for (i = 0; i < scull_nr_devs && s->count <= limit; i++) {
-                struct scull_dev *d = &scull_devices[i];
-                struct scull_qset *qs = d->data;
-                if (mutex_lock_interruptible(&d->lock))
-                        return -ERESTARTSYS;
-                seq_printf(s,"\nDevice %i: qset %i, q %i, sz %li\n",
-                             i, d->qset, d->quantum, d->size);
-                for (; qs && s->count <= limit; qs = qs->next) { /* scan the list */
-                        seq_printf(s, "  item at %p, qset at %p\n",
-                                     qs, qs->data);
-                        if (qs->data && !qs->next) /* dump only the last item */
-                                for (j = 0; j < d->qset; j++) {
-                                        if (qs->data[j])
-                                                seq_printf(s, "    % 4i: %8p\n",
-                                                             j, qs->data[j]);
-                                }
-                }
-                mutex_unlock(&scull_devices[i].lock);
-        }
-        return 0;
+	for (i = 0; i < scull_nr_devs && s->count <= limit; i++) {
+			struct scull_dev *d = &scull_devices[i];
+			struct scull_qset *qs = d->data;
+			if (mutex_lock_interruptible(&d->lock))
+					return -ERESTARTSYS;
+			seq_printf(s,"\nDevice %i: qset %i, q %i, sz %li\n",
+							i, d->qset, d->quantum, d->size);
+			for (; qs && s->count <= limit; qs = qs->next) { /* scan the list */
+					seq_printf(s, "  item at %p, qset at %p\n",
+									qs, qs->data);
+					if (qs->data && !qs->next) /* dump only the last item */
+							for (j = 0; j < d->qset; j++) {
+									if (qs->data[j])
+											seq_printf(s, "    % 4i: %8p\n",
+															j, qs->data[j]);
+							}
+			}
+			mutex_unlock(&scull_devices[i].lock);
+	}
+	return 0;
 }
 
 
@@ -242,9 +242,6 @@ int scull_open(struct inode *inode, struct file *filp)
 	struct scull_dev *dev; /* device information */
 
 	dev = container_of(inode->i_cdev, struct scull_dev, cdev);
-	printk(KERN_DEBUG "dev indetify:%d BY ZICHEN LIU\n", dev->identify);
-	printk(KERN_DEBUG "i_cdev:%x scull_devices address:%x dev address:%x BY ZICHEN LIU\n", inode->i_cdev, scull_devices, dev);
-	printk(KERN_DEBUG "inode:%x filp->f_inode:%x BY ZICHEN LIU\n", inode, filp->f_inode);
 	filp->private_data = dev; /* for other methods */
 
 	/* now trim to 0 the length of the device if open was write-only */
@@ -259,7 +256,6 @@ int scull_open(struct inode *inode, struct file *filp)
 
 int scull_release(struct inode *inode, struct file *filp)
 {
-	printk(KERN_DEBUG "scull release BY ZICHEN LIU\n");
 	return 0;
 }
 /*

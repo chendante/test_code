@@ -4,10 +4,11 @@
 #include <error.h>
 #include <fcntl.h>
 #include <sys/types.h>
+#include <sys/ioctl.h>
+#include "scull/scull.h"
 int main()
 {
     int fd, len;
-    char inbuf[40];
     char outbuf[] = "scull dev test! BY ZICHEN LIU";
     fd = open("/dev/scull", O_WRONLY);
     if (fd < 0)
@@ -24,19 +25,21 @@ int main()
     }
     printf("writing %d bytes to the device!\n", len);
     close(fd);
-    fd = open("/dev/scull", O_RDONLY);
+    fd = open("/dev/scull", O_RDWR);
     if (fd < 0)
     {
         printf("Error openning the device of scull for reading!\n");
         exit(1);
     }
-    len = read(fd, inbuf, len);
-    if (len < 0)
+    int retval, quantum = 10;
+
+    retval = ioctl(fd, SCULL_IOCSQUANTUM, &quantum);
+    close(fd);
+    if (retval < 0)
     {
-        printf("Error reading from the device!\n ");
-        close(fd);
+        printf("Error ioctl from the device!\n ");
         exit(1);
     }
-    printf("reading %d bytes from the device!\n", len);
+    printf("ioctl retval: %d\n", retval);
     printf("%s\n", inbuf);
 }
