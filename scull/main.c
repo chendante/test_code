@@ -398,7 +398,7 @@ long scull_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 	int err = 0, tmp;
 	int retval = 0;
 
-	printk(KERN_DEBUG "cmd:%d arg:%lx BY ZICHEN LIU", cmd, arg);
+	printk(KERN_DEBUG "cmd:%d arg:%lx  BY ZICHEN LIU", cmd, arg);
     
 	/*
 	 * extract the type and number bitfields, and don't decode
