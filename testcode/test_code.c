@@ -31,14 +31,31 @@ int main()
         printf("Error openning the device of scull for reading!\n");
         exit(1);
     }
-    int retval, quantum = 10;
+    int retval, quantum = 528;
 
-    retval = ioctl(fd, SCULL_IOCSQUANTUM, &quantum);
-    close(fd);
+    retval = ioctl(fd, SCULL_IOCGQUANTUM, &quantum);
     if (retval < 0)
     {
         printf("Error ioctl from the device!\n ");
+        close(fd);
         exit(1);
     }
-    printf("ioctl retval: %d\n", retval);
+    printf("ioctl retval: %d, quantum:%d\n", retval, quantum);
+    retval = ioctl(fd, SCULL_IOCSQUANTUM, &quantum);
+    if (retval < 0)
+    {
+        printf("Error ioctl from the device!\n ");
+        close(fd);
+        exit(1);
+    }
+    printf("ioctl retval: %d, quantum:%d\n", retval, quantum);
+    retval = ioctl(fd, SCULL_IOCGQUANTUM, &quantum);
+    if (retval < 0)
+    {
+        printf("Error ioctl from the device!\n ");
+        close(fd);
+        exit(1);
+    }
+    close(fd);
+    printf("ioctl retval: %d, quantum:%d\n", retval, quantum);
 }
