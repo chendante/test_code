@@ -5,7 +5,7 @@
 #include <fcntl.h>
 #include <sys/types.h>
 #include <sys/ioctl.h>
-#include "scull/scull.h"
+#include "../scull/scull.h"
 int main()
 {
     int fd, len;
