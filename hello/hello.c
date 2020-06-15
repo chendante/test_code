@@ -3,16 +3,19 @@
 
 MODULE_LICENSE("Dual BSD/GPL");
 
+int b;
+
 static int hello_init(void)
 {
-    // printk(KERN_ALERT "Hello, world\n");
-    *(int *)0 = 0;
+    int a = 0;
+    b = a + 1;
+    
     return 0;
 }
 
 static void hello_exit(void)
 {
-    // printk(KERN_ALERT "Goodbye, cruel world\n");
+    b = b + 2;
 }
 
 module_init(hello_init);
