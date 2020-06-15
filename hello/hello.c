@@ -18,11 +18,10 @@ int	hello_proc_read (struct seq_file *s, void *v)
 
 ssize_t hello_proc_write (struct file *filp, const char __user *buf, size_t size, loff_t *ppos)
 {
-    if(size > 0) {
-        if(__get_user(hello_count, (int __user *)buf))
-            return -EFAULT;
-        printk(KERN_ALERT "Hello Count changed! BY ZICHEN LIU");
-    }
+    if(__get_user(hello_count, (int __user *)buf))
+        return -EFAULT;
+    hello_count = hello_count - '0';
+    printk(KERN_ALERT "Hello Count changed! BY ZICHEN LIU");
     return size;
 }
 
