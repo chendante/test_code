@@ -9,9 +9,7 @@ MODULE_LICENSE("Dual BSD/GPL");
 
 int hello_count = 0;
 
-
-
-ssize_t	hello_proc_read (struct seq_file *s, void *v)
+int	hello_proc_read (struct seq_file *s, void *v)
 {
     sprintf(v, "hello_count:%d\n", hello_count);
     printk(KERN_ALERT "Hello Count PRINT! BY ZICHEN LIU");
