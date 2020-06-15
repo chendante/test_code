@@ -17,15 +17,15 @@ ssize_t	hello_proc_read (struct file *filp, char __user *buf, size_t size, loff_
 
 ssize_t hello_proc_write (struct file *filp, const char __user *buf, size_t size, loff_t *ppos)
 {
-    if(len > 0) {
+    if(size > 0) {
         if(__get_user(hello_count, (int __user *)buf))
             return -EFAULT;
         printk(KERN_ALERT "Hello Count changed! BY ZICHEN LIU");
     }
-    return len;
+    return size;
 }
 
-static struct proc_ops scullmem_proc_ops = {
+static struct proc_ops hello_proc_ops = {
 	.proc_read    = hello_proc_read,
     .proc_write   = hello_proc_write
 };
