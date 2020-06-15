@@ -193,14 +193,14 @@ static int scullseq_proc_open(struct inode *inode, struct file *file)
 static struct proc_ops scullmem_proc_ops = {
 	.proc_open    = scullmem_proc_open,
 	.proc_read    = seq_read,
-	.proc_lseek  = seq_lseek,
+	.proc_lseek   = seq_lseek,
 	.proc_release = single_release
 };
 
 static struct proc_ops scullseq_proc_ops = {
 	.proc_open    = scullseq_proc_open,
 	.proc_read    = seq_read,
-	.proc_lseek  = seq_lseek,
+	.proc_lseek	  = seq_lseek,
 	.proc_release = single_release
 };
 	
@@ -657,8 +657,8 @@ int scull_init_module(void)
 
     /* At this point call the init function for any friend device */
 	dev = MKDEV(scull_major, scull_minor + scull_nr_devs);
-	// dev += scull_p_init(dev);
-	// dev += scull_access_init(dev);
+	dev += scull_p_init(dev);
+	dev += scull_access_init(dev);
 
 #ifdef SCULL_DEBUG /* only when debugging */
 	scull_create_proc();

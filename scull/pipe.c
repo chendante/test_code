@@ -291,12 +291,11 @@ static int scullpipe_proc_open(struct inode *inode, struct file *file)
 	return single_open(file, scull_read_p_mem, NULL);
 }
 
-static struct file_operations scullpipe_proc_ops = {
-	.owner   = THIS_MODULE,
-	.open    = scullpipe_proc_open,
-	.read    = seq_read,
-	.llseek  = seq_lseek,
-	.release = single_release
+static struct proc_ops scullpipe_proc_ops = {
+	.proc_open    = scullpipe_proc_open,
+	.proc_read    = seq_read,
+	.proc_lseek  = seq_lseek,
+	.proc_release = single_release
 };
 
 #endif
