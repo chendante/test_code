@@ -190,20 +190,20 @@ static int scullseq_proc_open(struct inode *inode, struct file *file)
 /*
  * Create a set of file operations for our proc files.
  */
-static struct file_operations scullmem_proc_ops = {
-	.owner   = THIS_MODULE,
-	.open    = scullmem_proc_open,
-	.read    = seq_read,
-	.llseek  = seq_lseek,
-	.release = single_release
+static struct proc_ops scullmem_proc_ops = {
+	// .owner   = THIS_MODULE,
+	.proc_open    = scullmem_proc_open,
+	.proc_read    = seq_read,
+	.proc_llseek  = seq_lseek,
+	.proc_release = single_release
 };
 
-static struct file_operations scullseq_proc_ops = {
-	.owner   = THIS_MODULE,
-	.open    = scullseq_proc_open,
-	.read    = seq_read,
-	.llseek  = seq_lseek,
-	.release = seq_release
+static struct proc_ops scullseq_proc_ops = {
+	// .owner   = THIS_MODULE,
+	.proc_open    = scullseq_proc_open,
+	.proc_read    = seq_read,
+	.proc_llseek  = seq_lseek,
+	.proc_release = single_release
 };
 	
 
