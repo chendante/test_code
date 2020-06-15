@@ -11,7 +11,7 @@ int hello_count = 0;
 ssize_t	hello_proc_read (struct file *filp, char __user *buf, size_t size, loff_t *ppos)
 {
     sprintf(buf, "hello_count:%d\n", hello_count);
-    printk(KERN_ALERT "Hello Count PRINT! BY ZICHEN LIU")
+    printk(KERN_ALERT "Hello Count PRINT! BY ZICHEN LIU");
     return strlen(buf);
 }
 
