@@ -11,7 +11,7 @@ int hello_count = 0;
 
 int	hello_proc_read (struct seq_file *s, void *v)
 {
-    sprintf(v, "hello_count:%d\n", hello_count);
+    seq_printf(s, "hello_count:%d\n", hello_count);
     printk(KERN_ALERT "Hello Count PRINT! BY ZICHEN LIU");
     return 0;
 }
