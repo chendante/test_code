@@ -19,7 +19,7 @@ ssize_t hello_proc_write(struct file *filp, const char __user *buf, size_t size,
 {
     char tmpbuf[64];
 
-    if (buff && !copy_from_user(tmpbuf, buf, size))
+    if (buf && !copy_from_user(tmpbuf, buf, size))
     {
         hello_count = tmpbuf[0] - '0';
     }
